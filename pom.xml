@@ -126,6 +126,12 @@
         <artifactId>postgresql</artifactId>
         <version>42.1.1</version>
       </dependency>
+      <!-- DB2 -->
+      <dependency>
+        <groupId>com.ibm.db2.jcc</groupId>
+        <artifactId>db2jcc</artifactId>
+        <version>db2jcc4</version>
+      </dependency>
       <!-- DB Driver End -->
 
       <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
@@ -347,6 +353,14 @@
         <artifactId>commons-jexl</artifactId>
         <version>1.1</version>
       </dependency>
+
+      <!-- 利用icu4j检测文件的编码格式 -->
+      <dependency>
+        <groupId>com.ibm.icu</groupId>
+        <artifactId>icu4j</artifactId>
+        <version>67.1</version>
+      </dependency>
+
 
       <!-- 日志文件管理包 -->
       <!-- logback+slf4j start -->
