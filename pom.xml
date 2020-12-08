@@ -1,0 +1,567 @@
+<?xml version ="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- pom 模型版本 -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- 项目信息 -->
+  <groupId>com.kindustry</groupId> <!-- 项目唯一标识 -->
+  <artifactId>all-parent-pom</artifactId> <!-- 项目名 -->
+  <version>1.0</version> <!-- 版本 -->
+  <packaging>pom</packaging> <!-- 打包方式 （pom,war,jar） -->
+  <name>${project.artifactId}</name> <!-- 项目的名称， Maven 产生的文档用 -->
+  <description>pom config project</description> <!-- 项目的描述, Maven 产生的文档用 -->
+
+  <!-- 属性设置 -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- 编译字符编码为utf-8 -->
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding> <!-- 输出字符编码为UTF-8 -->
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <!-- jdK版本 -->
+    <java.version>1.8</java.version>
+    <!-- spring -->
+    <spring.version>4.3.18.RELEASE</spring.version>
+    <!-- Mybatis -->
+    <mybatis.version>3.5.4</mybatis.version>
+    <!-- Mybatis 整合 Spring -->
+    <mybatis-spring.version>2.0.0</mybatis-spring.version>
+
+    <!-- c3p0 连接池 -->
+    <c3p0.version>0.9.5.4</c3p0.version>
+    <!-- mysql -->
+    <mysql.version>5.1.26</mysql.version>
+
+    <!-- logback+slf4j 日志文件管理包 -->
+    <slf4j.version>1.7.5</slf4j.version>
+    <logback.version>1.2.3</logback.version>
+    <janino.version>3.0.10</janino.version>
+
+    <!-- Json -->
+    <jackson.version>2.7.4</jackson.version>
+
+    <!-- Servlet -->
+    <servlet.version>3.0.1</servlet.version>
+    <jsp-api.version>2.2</jsp-api.version>
+    <!-- jstl -->
+    <jstl.version>1.2</jstl.version>
+    <standard.version>1.1.2</standard.version>
+  </properties>
+
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- 配置项目依赖 <dependency> <groupId>com.kindustry</groupId> <artifactId>core</artifactId> </dependency> -->
+
+      <!-- Servlet AP 和 Java EE APIs Start -->
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>8.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-web-api</artifactId>
+        <version>8.0</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Servlet -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>${jsp-api.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- jstl -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>${jstl.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>taglibs</groupId>
+        <artifactId>standard</artifactId>
+        <version>${standard.version}</version>
+      </dependency>
+
+      <!-- 注解 -->
+      <dependency>
+        <groupId>javax.persistence</groupId>
+        <artifactId>persistence-api</artifactId>
+        <version>1.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>1.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>mail</artifactId>
+        <version>1.4</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- Servlet AP 和 Java EE APIs End -->
+
+
+
+      <!-- DB Driver Start -->
+      <!-- 导入Mysql数据库链接jar包 -->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
+      <!-- PostgreSQL -->
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.1.1</version>
+      </dependency>
+      <!-- DB2 -->
+      <dependency>
+        <groupId>com.ibm.db2.jcc</groupId>
+        <artifactId>db2jcc</artifactId>
+        <version>db2jcc4</version>
+      </dependency>
+      <!-- DB Driver End -->
+
+      <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
+      <dependency>
+        <groupId>commons-dbcp</groupId>
+        <artifactId>commons-dbcp</artifactId>
+        <version>1.4</version>
+      </dependency>
+      <!-- c3p0 连接池 -->
+      <dependency>
+        <groupId>com.mchange</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>${c3p0.version}</version>
+      </dependency>
+
+
+      <!-- Java爬虫 解析html Start -->
+      <!-- simulate web browser -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.6</version>
+      </dependency>
+      <!-- parse html -->
+      <dependency>
+        <groupId>org.htmlparser</groupId>
+        <artifactId>htmlparser</artifactId>
+        <version>2.1</version>
+      </dependency>
+      <!-- parse DOM -->
+      <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>1.11.3</version>
+      </dependency>
+      <!-- parse javascript -->
+      <dependency>
+        <groupId>org.mozilla</groupId>
+        <artifactId>rhino</artifactId>
+        <version>1.7.10</version>
+      </dependency>
+      <!-- simulate client action -->
+      <dependency>
+        <groupId>net.sourceforge.htmlunit</groupId>
+        <artifactId>htmlunit</artifactId>
+        <version>2.33</version>
+      </dependency>
+      <!-- Java爬虫 解析html End -->
+
+
+      <!-- commons 包 Start -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.11</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.9.4</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>1.4</version>
+      </dependency>
+      <!-- commons 包 End -->
+
+
+      <!-- Spring IOC 核心容器 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Spring 事物 模块 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Spring ORM 对象关系映射 模块 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Spring JDBC 模块 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-oxm</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Spring WEB MVC 模块 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Spring AOP 切面 模块 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>1.9.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.9.2</version>
+      </dependency>
+
+      <!--quartz任务调度 -->
+      <dependency>
+        <groupId>quartz</groupId>
+        <artifactId>quartz</artifactId>
+        <version>1.5.2</version>
+      </dependency>
+
+      <!-- mybatis核心包 -->
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>${mybatis.version}</version>
+      </dependency>
+      <!-- Mybatis 整合 Spring -->
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>${mybatis-spring.version}</version>
+      </dependency>
+
+      <!-- 映入JSON -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <!-- 缓存 -->
+      <dependency>
+        <groupId>net.sf.ehcache</groupId>
+        <artifactId>ehcache</artifactId>
+        <version>2.8.9</version>
+      </dependency>
+
+      <!-- excel start -->
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>3.16</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>3.16</version>
+      </dependency>
+      <!-- excel end -->
+
+      <!-- 公式运算 -->
+      <dependency>
+        <groupId>commons-jexl</groupId>
+        <artifactId>commons-jexl</artifactId>
+        <version>1.1</version>
+      </dependency>
+
+      <!-- 利用icu4j检测文件的编码格式 -->
+      <dependency>
+        <groupId>com.ibm.icu</groupId>
+        <artifactId>icu4j</artifactId>
+        <version>67.1</version>
+      </dependency>
+
+
+      <!-- 日志文件管理包 -->
+      <!-- logback+slf4j start -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-access</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <!-- logback+slf4j end -->
+
+      <!-- 日志文件管理包-提高性能log输出性能 -->
+      <!-- janino -->
+      <dependency>
+        <groupId>org.codehaus.janino</groupId>
+        <artifactId>commons-compiler</artifactId>
+        <version>${janino.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.janino</groupId>
+        <artifactId>janino</artifactId>
+        <version>${janino.version}</version>
+      </dependency>
+
+
+      <!-- 单元测试 -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+
+    </dependencies>
+
+  </dependencyManagement>
+
+
+  <build>
+    <defaultGoal>compile</defaultGoal>
+    <pluginManagement>
+      <plugins>
+        <!-- compiler插件, 设定JDK版本 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.1</version>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <showWarnings>true</showWarnings>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-ejb-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+            <ejbVersion>3.1</ejbVersion>
+          </configuration>
+        </plugin>
+
+        <!-- Maven dependency 插件 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.10</version>
+        </plugin>
+
+        <!-- shade插件配置 -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>2.4.3</version>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+              <configuration>
+                <transformers>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <!-- 我练习的JavaSE部分的spring，所有这里配置了主类，你们如果需要也可有换成你们自己的主类的路径 -->
+                    <mainClass></mainClass>
+                  </transformer>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                    <resource>META-INF/spring.schemas</resource>
+                  </transformer>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                    <resource>META-INF/spring.handlers</resource>
+                  </transformer>
+                </transformers>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Jetty 插件 -->
+        <plugin>
+          <groupId>org.mortbay.jetty</groupId>
+          <artifactId>jetty-maven-plugin</artifactId>
+          <configuration>
+            <webAppConfig>
+              <contextPath>/</contextPath>
+            </webAppConfig>
+            <scanIntervalSeconds>0</scanIntervalSeconds>
+            <connectors>
+              <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                <port>8080</port>
+                <maxIdleTime>60000</maxIdleTime>
+              </connector>
+              <!-- <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector"> <port>8443</port> <keystore>keystore</keystore> <keyPassword>123456</keyPassword> 
+                <password>123456</password> </connector> -->
+            </connectors>
+          </configuration>
+        </plugin>
+
+        <!-- Tomcat 插件 -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>tomcat-maven-plugin</artifactId>
+          <version>1.1</version>
+          <configuration>
+            <url>http://localhost:8080/manager/html</url>
+            <server>tomcat</server>
+            <username>admin</username>
+            <password>admin</password>
+            <path>/edw</path>
+            <update>true</update>
+          </configuration>
+        </plugin>
+
+
+        <!-- JBoss 插件 -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>jboss-maven-plugin</artifactId>
+          <version>1.5.0</version>
+          <configuration>
+            <jbossHome>D:\Program Files\Middleware\jboss-5.0.0.GA</jbossHome>
+            <serverName>default</serverName>
+            <hostName>localhost</hostName>
+            <port>8080</port>
+            <fileName>${project.build.directory}/${project.build.finalName}.war</fileName>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven2-plugin</artifactId>
+          <version>1.4.5</version>
+          <configuration>
+            <container>
+              <containerId>jboss51x</containerId>
+              <type>remote</type>
+            </container>
+            <configuration>
+              <type>runtime</type>
+              <properties>
+                <cargo.remote.username>admin</cargo.remote.username>
+                <cargo.remote.password>admin</cargo.remote.password>
+                <cargo.hostname>localhost</cargo.hostname>
+                <cargo.rmi.port>1099</cargo.rmi.port>
+              </properties>
+            </configuration>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.jboss.integration</groupId>
+              <artifactId>jboss-profileservice-spi</artifactId>
+              <version>5.1.0.GA</version>
+            </dependency>
+            <dependency>
+              <groupId>org.jboss.jbossas</groupId>
+              <artifactId>jboss-as-client</artifactId>
+              <version>5.1.0.GA</version>
+              <type>pom</type>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
