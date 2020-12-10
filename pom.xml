@@ -497,8 +497,9 @@
 
         <!-- Jetty 插件 -->
         <plugin>
-          <groupId>org.mortbay.jetty</groupId>
+          <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-maven-plugin</artifactId>
+          <version>9.4.7.v20180619</version>
           <configuration>
             <webAppConfig>
               <contextPath>/</contextPath>
