@@ -47,6 +47,9 @@
 
     <!-- jboss client version -->
     <jboss.version>8.2.1.Final</jboss.version>
+    
+    <!-- excel poi -->
+    <poi.version>3.14</poi.version>
   </properties>
 
 
@@ -355,12 +358,12 @@
       <dependency>
         <groupId>org.apache.poi</groupId>
         <artifactId>poi</artifactId>
-        <version>3.16</version>
+        <version>${poi.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.poi</groupId>
         <artifactId>poi-ooxml</artifactId>
-        <version>3.16</version>
+        <version>${poi.version}</version>
       </dependency>
       <!-- excel end -->
 
