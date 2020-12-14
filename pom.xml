@@ -5,7 +5,7 @@
 
   <!-- 项目信息 -->
   <groupId>com.kindustry</groupId> <!-- 项目唯一标识 -->
-  <artifactId>all-parent-pom</artifactId> <!-- 项目名 -->
+  <artifactId>platform-pom</artifactId> <!-- 项目名 -->
   <version>1.0</version> <!-- 版本 -->
   <packaging>pom</packaging> <!-- 打包方式 （pom,war,jar） -->
   <name>${project.artifactId}</name> <!-- 项目的名称， Maven 产生的文档用 -->
