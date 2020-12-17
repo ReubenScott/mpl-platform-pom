@@ -495,7 +495,7 @@
           </executions>
         </plugin>
 
-        <!-- JBoss deploy plugin -->
+        <!-- JBoss deploy plugin: mvn wildfly:deploy -->
         <plugin>
           <groupId>org.wildfly.plugins</groupId>
           <artifactId>wildfly-maven-plugin</artifactId>
