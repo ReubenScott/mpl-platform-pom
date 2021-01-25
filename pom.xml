@@ -367,6 +367,13 @@
       </dependency>
       <!-- excel end -->
 
+      <!-- User-Agent 获取访问者设备信息 -->
+      <dependency>
+        <groupId>eu.bitwalker</groupId>
+        <artifactId>UserAgentUtils</artifactId>
+        <version>1.20</version>
+      </dependency>
+   
       <!-- 公式运算 -->
       <dependency>
         <groupId>commons-jexl</groupId>
