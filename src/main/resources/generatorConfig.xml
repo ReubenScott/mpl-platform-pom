@@ -54,7 +54,7 @@
 
 
         <!-- 生成实体类地址 targetPackage：生成的实体类所在的包  targetProject：生成的实体类所在的硬盘位置 -->
-        <javaModelGenerator targetPackage="com.mall.pojo" targetProject="src/main/java" >
+        <javaModelGenerator targetPackage="com.kindustry.entity" targetProject="src/main/java" >
             <!-- 是否允许子包 -->
             <property name="enableSubPackages" value="false" />
             <!-- 是否对model 添加构造函数 -->
@@ -67,7 +67,7 @@
  
 
         <!-- 生成mapxml 文件  targetPackage 和 targetProject ：生成的 mapper 文件的包和位置 -->
-        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources" >
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources" >
             <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
@@ -75,7 +75,7 @@
 
         <!-- 生成mapxml 对应client，也就是接口 dao -->
         <!-- targetPackage 和 targetProject ：生成的 interface 文件的包和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mall.dao" targetProject="src/main/java" >
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.kindustry.dao" targetProject="src/main/java" >
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name ="enableSubPackages" value="false" />
         </javaClientGenerator>
