@@ -435,11 +435,20 @@
         <version>4.12</version>
         <scope>test</scope>
       </dependency>
+      
+      <!-- MyBatis Generator -->
+      <dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+        <version>1.3.5</version>
+      </dependency>
 
     </dependencies>
 
   </dependencyManagement>
 
+  
+  
 
   <build>
     <defaultGoal>compile</defaultGoal>
@@ -541,6 +550,19 @@
               <!-- <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector"> <port>8443</port> <keystore>keystore</keystore> <keyPassword>123456</keyPassword> 
                 <password>123456</password> </connector> -->
             </connectors>
+          </configuration>
+        </plugin>
+        
+        <!-- MyBatis Generator -->
+        <plugin>
+          <groupId>org.mybatis.generator</groupId>
+          <artifactId>mybatis-generator-maven-plugin</artifactId>
+          <version>1.3.2</version>
+          <configuration>
+       　　　　　　 　 <!-- 加载mybatis用于生成代码的配置文件，这个文件要在这个路径下 -->
+        　　　　　　　 <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+            <verbose>true</verbose>
+            <overwrite>true</overwrite>
           </configuration>
         </plugin>
         

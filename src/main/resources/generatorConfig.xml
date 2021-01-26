@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 配置 Run As Maven build : Goals 参数 : mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
+<!-- 配置 tableName,使用 Run As Maven build 生成 dao model 层 -->
+<generatorConfiguration>
+
+    <!-- 配置文件路径
+    <properties url="${mybatis.generator.generatorConfig.properties}"/>-->
+
+    <!--数据库驱动包路径  <classPathEntry location="D:/repository/maven/org/postgresql/postgresql/42.1.1/postgresql-42.1.1.jar"/> -->
+    <classPathEntry location="D:/repository/maven/mysql/mysql-connector-java/5.1.26/mysql-connector-java-5.1.26.jar"/>
+ 
+    <!-- context 是逆向工程的主要配置信息 -->
+    <!-- id：起个名字  targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
+    <context id="default" targetRuntime="MyBatis3">
+
+       <property name ="javaFileEncoding" value="UTF-8"/>
+       <!-- 分页插件，但是此插件并不是使用 limit,而是通过ResultSet 的游标来实现分页，所以数据量大的情况下会影响效率-->
+       <plugin type ="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+       <!-- 为生成的 Java模型类添加序列化接口，并生成 serialVersionUID字段-->
+       <plugin type ="org.mybatis.generator.plugins.SerializablePlugin"/>
+       <!-- 在XXXExample类中生成大小写敏感的 LIKE方法-->
+       <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+
+        <!--optional,旨在创建class 时，对注释进行控制 -->
+        <commentGenerator>
+            <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+ 
+        <!-- 数据库连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/attendance?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root"                        
+                        password="123456">
+        </jdbcConnection>
+  
+        
+       <!-- 类型解析器 ，在数据库类型和 java类型之间的转换控制 -->
+        <javaTypeResolver>
+           <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 常用基本类型double 和 long;
+                  为 true时把JDBC DECIMAL 和   NUMERIC 类型解析为 java.math.BigDecimal -->
+           <property name ="forceBigDecimals" value="false"/>
+           <!-- This property is used to specify whether MyBatis Generator should force the use of JSR-310 data types for DATE, TIME,
+           and TIMESTAMP fields, rather than using java.util.Date -->
+           <!--当useJSR310Types 为true时，就会 jdbc对应的日期类型会转成java8中的 LocateDateTime类型，如果useJSR310Types为 false，则还是转成java.util.Date类型 -->
+           <property name ="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+
+        <!-- 生成实体类地址 targetPackage：生成的实体类所在的包  targetProject：生成的实体类所在的硬盘位置 -->
+        <javaModelGenerator targetPackage="com.mall.pojo" targetProject="src/main/java" >
+            <!-- 是否允许子包 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 是否对model 添加构造函数 -->
+            <property name="constructorBased" value="true" />
+            <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
+            <property name="trimStrings" value="true" />
+            <!-- 建立model 对象是否不可改变 即生成的model 对象不会有 setter方法，只有构造方法 -->
+            <property name="immutable" value="false" />
+        </javaModelGenerator>
+ 
+
+        <!-- 生成mapxml 文件  targetPackage 和 targetProject ：生成的 mapper 文件的包和位置 -->
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources" >
+            <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+ 
+
+        <!-- 生成mapxml 对应client，也就是接口 dao -->
+        <!-- targetPackage 和 targetProject ：生成的 interface 文件的包和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mall.dao" targetProject="src/main/java" >
+            <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
+            <property name ="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+
+        <!-- 配置表信息 -->
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table tableName="supplier" domainObjectName= "Supplier"
+                >
+        </table>
+
+
+    </context>
+</generatorConfiguration>
