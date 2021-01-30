@@ -20,24 +20,28 @@
        <property name ="javaFileEncoding" value="UTF-8"/>
        <!-- 分页插件，但是此插件并不是使用 limit,而是通过ResultSet 的游标来实现分页，所以数据量大的情况下会影响效率-->
        <plugin type ="org.mybatis.generator.plugins.RowBoundsPlugin"/>
-       <!-- 为生成的 Java模型类添加序列化接口，并生成 serialVersionUID字段-->
-       <plugin type ="org.mybatis.generator.plugins.SerializablePlugin"/>
+       <!-- 为生成的 Java模型类添加序列化接口，并生成 serialVersionUID字段
+       <plugin type ="org.mybatis.generator.plugins.SerializablePlugin"/> -->
        <!-- 在XXXExample类中生成大小写敏感的 LIKE方法-->
        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
 
-        <!--optional,旨在创建class 时，对注释进行控制 -->
+        <!--optional,旨在创建class 时，对注释进行控制 
         <commentGenerator>
-            <!-- 是否生成注释代时间戳-->
+                            是否生成注释代时间戳
             <property name="suppressDate" value="true" />
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+                           是否去除自动生成的注释 true：是 ： false:否
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
+         -->
+         
+        <commentGenerator type="mybatis.MybatisGenerator"/>
+        
  
         <!-- 数据库连接信息 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/attendance?useUnicode=true&amp;characterEncoding=utf-8"
-                        userId="root"                        
-                        password="123456">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://localhost/cashier?searchpath=public"
+                        userId="postgres"                        
+                        password="postgres">
         </jdbcConnection>
   
         
@@ -58,11 +62,13 @@
             <!-- 是否允许子包 -->
             <property name="enableSubPackages" value="false" />
             <!-- 是否对model 添加构造函数 -->
-            <property name="constructorBased" value="true" />
+            <property name="constructorBased" value="false" />
             <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
             <property name="trimStrings" value="true" />
             <!-- 建立model 对象是否不可改变 即生成的model 对象不会有 setter方法，只有构造方法 -->
             <property name="immutable" value="false" />
+            
+            <property name="rootClass" value="com.kindustry.entity.BaseEntity" />            
         </javaModelGenerator>
  
 
@@ -71,7 +77,10 @@
             <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
- 
+        
+         <!-- type="ANNOTATEDMAPPER",生成基于注解的Mapper接口
+              type="MIXEDMAPPER",生成最小的基于注解的Mapper接口
+              type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口 -->
 
         <!-- 生成mapxml 对应client，也就是接口 dao -->
         <!-- targetPackage 和 targetProject ：生成的 interface 文件的包和位置 -->
@@ -83,10 +92,16 @@
 
         <!-- 配置表信息 -->
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="supplier" domainObjectName= "Supplier"
-                >
-        </table>
-
+        <table tableName="customers" domainObjectName="Customer"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="true" />
+ 
+		<table tableName="goods" domainObjectName="GoodsEntity">
+			<ignoreColumn column="create_time" delimitedColumnName="" />
+			<ignoreColumn column="update_time" delimitedColumnName="" />
+			<ignoreColumn column="delflag" delimitedColumnName="" />
+		</table>
 
     </context>
 </generatorConfiguration>

@@ -52,6 +52,18 @@
     <poi.version>3.14</poi.version>
   </properties>
 
+  <dependencies>
+    <!-- PostgreSQL -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
+    <!-- MyBatis Generator -->
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+    </dependency>
+  </dependencies>
 
   <dependencyManagement>
     <dependencies>
