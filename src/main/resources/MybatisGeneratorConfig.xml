@@ -64,11 +64,11 @@
             <!-- 是否对model 添加构造函数 -->
             <property name="constructorBased" value="false" />
             <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
-            <property name="trimStrings" value="true" />
+            <property name="trimStrings" value="false" />
             <!-- 建立model 对象是否不可改变 即生成的model 对象不会有 setter方法，只有构造方法 -->
             <property name="immutable" value="false" />
             
-            <property name="rootClass" value="com.kindustry.entity.BaseEntity" />            
+            <property name="rootClass" value="com.kindustry.orm.entity.BaseEntity" />            
         </javaModelGenerator>
  
 
@@ -100,7 +100,7 @@
 		<table tableName="goods" domainObjectName="GoodsEntity">
 			<ignoreColumn column="create_time" delimitedColumnName="" />
 			<ignoreColumn column="update_time" delimitedColumnName="" />
-			<ignoreColumn column="delflag" delimitedColumnName="" />
+			<ignoreColumn column="del_flag" delimitedColumnName="" />
 		</table>
 
     </context>
