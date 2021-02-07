@@ -18,17 +18,29 @@
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     <!-- jdK版本 -->
     <java.version>1.8</java.version>
+    <!--  本地jar目录   ${basedir}/../epl-parent-pom/lib -->
+    <local.jar.dir>${basedir}/lib</local.jar.dir>
     <!-- spring -->
     <spring.version>4.3.18.RELEASE</spring.version>
     <!-- Mybatis -->
     <mybatis.version>3.5.4</mybatis.version>
     <!-- Mybatis 整合 Spring -->
     <mybatis-spring.version>2.0.0</mybatis-spring.version>
+    
+    <!-- hibernate -->
+    <hibernate.version>4.1.12.Final</hibernate.version>
+    
+    <!-- struts -->
+    <struts.version>2.3.14</struts.version>
+    
+    <!--  AOP  -->
+    <aspectj.version>1.9.2</aspectj.version>
 
-    <!-- HikariCP 连接池 -->
-    <hikariCP.version>3.3.1</hikariCP.version>
     <!-- mysql -->
     <mysql.version>5.1.26</mysql.version>
+    <postgresql.version>42.1.1</postgresql.version>
+    <!-- HikariCP 连接池 -->
+    <hikariCP.version>3.3.1</hikariCP.version>
 
     <!-- logback+slf4j 日志文件管理包 -->
     <slf4j.version>1.7.5</slf4j.version>
@@ -97,7 +109,7 @@
         <scope>provided</scope>
       </dependency>
 
-      <!-- Servlet -->
+      <!-- Servlet Library -->
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
@@ -127,7 +139,7 @@
         <groupId>javax.persistence</groupId>
         <artifactId>persistence-api</artifactId>
         <version>1.0</version>
-        <scope>provided</scope>
+        <scope>runtime</scope>
       </dependency>
       <dependency>
         <groupId>javax.activation</groupId>
@@ -156,7 +168,7 @@
       <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
-        <version>42.1.1</version>
+        <version>${postgresql.version}</version>
       </dependency>
       <!-- DB2 -->
       <dependency>
@@ -179,7 +191,6 @@
         <artifactId>commons-dbcp</artifactId>
         <version>1.4</version>
       </dependency>
-
 
       <!-- Java爬虫 解析html Start -->
       <!-- simulate web browser -->
@@ -232,7 +243,33 @@
         <version>1.4</version>
       </dependency>
       <!-- commons 包 End -->
+      
+      
+      <!--  Struts2 -->
+      <dependency>
+        <groupId>org.apache.struts</groupId>
+        <artifactId>struts2-core</artifactId>
+        <version>${struts.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.struts</groupId>
+        <artifactId>struts2-convention-plugin</artifactId>
+        <version>${struts.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.struts</groupId>
+        <artifactId>struts2-spring-plugin</artifactId>
+        <version>${struts.version}</version>
+      </dependency>
+       
 
+      <!-- hibernate -->
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+     
 
       <!-- Spring IOC 核心容器 -->
       <dependency>
@@ -305,6 +342,11 @@
         <artifactId>spring-webmvc</artifactId>
         <version>${spring.version}</version>
       </dependency>
+      <dependency> 
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aspects</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
 
       <!-- Spring AOP 切面 模块 -->
       <dependency>
@@ -315,12 +357,12 @@
       <dependency>
         <groupId>org.aspectj</groupId>
         <artifactId>aspectjrt</artifactId>
-        <version>1.9.2</version>
+        <version>${aspectj.version}</version>
       </dependency>
       <dependency>
         <groupId>org.aspectj</groupId>
         <artifactId>aspectjweaver</artifactId>
-        <version>1.9.2</version>
+        <version>${aspectj.version}</version>
       </dependency>
 
       <!--quartz任务调度 -->
@@ -471,11 +513,15 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.1</version>
+          <version>3.8.0</version>
           <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
             <showWarnings>true</showWarnings>
+            <compilerArguments>
+              <extdirs>src\main\webapp\WEB-INF\lib</extdirs>
+            </compilerArguments>
           </configuration>
         </plugin>
 
@@ -539,12 +585,18 @@
         
         <!-- Tomcat deploy plugin -->
         <plugin>
-          <groupId>org.codehaus.mojo</groupId> 
-          <artifactId>tomcat-maven-plugin</artifactId> 
-          <version>1.1</version> 
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>tomcat-maven-plugin</artifactId>
+          <configuration>
+            <url>http://localhost:8080/manager/text</url>  <!-- tomcat管理路径 -->
+            <server>tomcat</server>  <!-- 与settings.xml文件中server的id相同 -->
+            <username>admin</username>
+            <password>passwd</password>
+            <path>/cashier</path>
+            <update>true</update>
+          </configuration>
         </plugin>
-        
-        
+          
         <!-- Jetty 插件 -->
         <plugin>
           <groupId>org.eclipse.jetty</groupId>
@@ -560,8 +612,12 @@
                 <port>8080</port>
                 <maxIdleTime>60000</maxIdleTime>
               </connector>
-              <!-- <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector"> <port>8443</port> <keystore>keystore</keystore> <keyPassword>123456</keyPassword> 
-                <password>123456</password> </connector> -->
+              <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector"> 
+                <port>8443</port>
+                <keystore>keystore</keystore>
+                <keyPassword>123456</keyPassword> 
+                <password>123456</password>
+              </connector> 
             </connectors>
           </configuration>
         </plugin>
@@ -573,7 +629,7 @@
           <version>1.3.2</version>
           <configuration>
        　　　　　　 　 <!-- 加载mybatis用于生成代码的配置文件，这个文件要在这个路径下 -->
-        　　　　　　　 <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+        　　　　　　　 <configurationFile>src/main/resources/MybatisGeneratorConfig.xml</configurationFile>
             <verbose>true</verbose>
             <overwrite>true</overwrite>
           </configuration>
