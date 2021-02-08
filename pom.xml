@@ -583,17 +583,17 @@
           </configuration>
         </plugin>
         
-        <!-- Tomcat deploy plugin -->
+        <!-- tomcat:run plugin -->
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>tomcat-maven-plugin</artifactId>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
           <configuration>
-            <url>http://localhost:8080/manager/text</url>  <!-- tomcat管理路径 -->
-            <server>tomcat</server>  <!-- 与settings.xml文件中server的id相同 -->
-            <username>admin</username>
-            <password>passwd</password>
-            <path>/cashier</path>
-            <update>true</update>
+            <!-- http port --> 
+            <port>9090</port> 
+            <!-- application path always starts with /--> 
+            <path>/</path> 
+            <contextReloadable>true</contextReloadable>
           </configuration>
         </plugin>
           
