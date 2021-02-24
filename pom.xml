@@ -80,6 +80,23 @@
   <dependencyManagement>
     <dependencies>
     
+      <dependency>
+        <groupId>com.kindustry</groupId>
+        <artifactId>core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.kindustry</groupId>
+        <artifactId>jdbc</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.kindustry</groupId>
+        <artifactId>etl</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    
+    
       <!--  本地jar Start -->
       <dependency>
         <groupId>db2jcc</groupId>
