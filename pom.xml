@@ -79,7 +79,7 @@
 
   <dependencyManagement>
     <dependencies>
-    
+      <!-- 配置项目依赖 -->
       <dependency>
         <groupId>com.kindustry</groupId>
         <artifactId>core</artifactId>
@@ -138,7 +138,6 @@
       <!--  本地jar End -->
     
     
-      <!-- 配置项目依赖 -->
       
       
       
@@ -246,12 +245,6 @@
         <groupId>com.zaxxer</groupId>
         <artifactId>HikariCP</artifactId>
         <version>${hikariCP.version}</version>
-      </dependency>
-      <!-- dbcp 数据库连接池 -->
-      <dependency>
-        <groupId>commons-dbcp</groupId>
-        <artifactId>commons-dbcp</artifactId>
-        <version>1.4</version>
       </dependency>
 
       
@@ -462,6 +455,13 @@
         <version>1.46</version>
       </dependency>
 
+      <!-- jasypt加解密密码 -->
+      <dependency>
+        <groupId>org.jasypt</groupId>
+        <artifactId>jasypt</artifactId>
+        <version>1.9.3</version>
+      </dependency>
+      
 
       <!-- commons 包 Start -->
       <dependency>
