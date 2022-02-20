@@ -5,7 +5,7 @@
 
   <!-- 项目信息 -->
   <groupId>com.kindustry</groupId> <!-- 项目唯一标识 -->
-  <artifactId>platform-pom</artifactId> <!-- 项目名 -->
+  <artifactId>mpl-platform-pom</artifactId> <!-- 项目名 -->
   <version>1.0</version> <!-- 版本 -->
   <packaging>pom</packaging> <!-- 打包方式 （pom,war,jar） -->
   <name>${project.artifactId}</name> <!-- 项目的名称， Maven 产生的文档用 -->
@@ -19,7 +19,7 @@
     <!-- jdK版本 -->
     <java.version>1.8</java.version>
     <!--  本地jar目录   ${basedir}/../epl-parent-pom/lib -->
-    <local.jar.dir>${basedir}/../platform-pom/lib</local.jar.dir>
+    <local.jar.dir>${basedir}/../mpl-platform-pom/lib</local.jar.dir>
     <!-- spring -->
     <spring.version>4.3.20.RELEASE</spring.version>
     <!-- Mybatis -->
