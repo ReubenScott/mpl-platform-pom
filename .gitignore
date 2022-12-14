@@ -1,7 +1,6 @@
-/target/
-/.classpath
-/.gitignore
-/.project
-/.settings/
-src/main/resources/META-INF/MANIFEST.MF
-src/main/resources/rebel.xml
+.gitignore
+.classpath
+.project
+.settings/
+target/
+rebel.xml
